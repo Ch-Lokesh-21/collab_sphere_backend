@@ -8,6 +8,8 @@ const userRegisterRoute = require("./routes/userRoutes/register");
 const userLoginRoute = require("./routes/userRoutes/login");
 const volunteerRegisterRoute = require("./routes/VolunteerRoutes/register");
 const volunteerLoginRoute = require("./routes/VolunteerRoutes/login");
+const crudTaskRoutes = require("./routes/taskRoutes/Tasks");
+const { verifyJWT } = require("./middleware/verifyJWT");
 const app = express();
 
 app.use(cors())
@@ -29,6 +31,7 @@ app.use("/api/user/login" , userLoginRoute);
 app.use("/api/volunteer/register" , volunteerRegisterRoute);
 app.use("/api/volunteer/login" , volunteerLoginRoute);
 
+app.use("/api/tasks" , verifyJWT,crudTaskRoutes);
 app.get("/", (req, res) => {
     res.status(200).send("Welcome to the API");
 });
