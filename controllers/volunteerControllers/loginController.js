@@ -6,7 +6,7 @@ const handleLogin = async (req, res) => {
   if (!email || !password) {
     return res
       .status(400)
-      .json({ message: "Username and password are required" });
+      .json({ message: "Email and password are required" });
   }
   try{
     const foundUser = await Volunteer.findOne({ email }).exec();
@@ -22,6 +22,7 @@ const handleLogin = async (req, res) => {
         {
           email: foundUser.email,
           id: foundUser._id,
+          role:"volunteer"
         },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: "1d" }

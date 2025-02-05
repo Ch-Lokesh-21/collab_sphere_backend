@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const TasksSchema = new Schema({
+  title:
+  {
+    type:String,
+    required : true
+  },
   description : {
     type : String,
     required : true
@@ -21,7 +26,7 @@ const TasksSchema = new Schema({
   },
   acceptedBy :
   {
-    type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer', required: true
+    type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer'
   },
   currentStat : 
   {
